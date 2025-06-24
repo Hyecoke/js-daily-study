@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수</title>
+</head>
+<body>
+    <script>
+        // 함수는 코드의 재사용성을 높여준다. 
+        /*
+            funciton 함수명(인자) {
+                코드 
+                return 반환값
+            }
+        */
+
+       // 함수 정의 
+       /*
+       function numbering() {
+            document.write(1); 
+       } 
+       // 함수 호출 
+       numbering(); // 결과 1 */
+       /*
+       function numbering() {
+            i = 0; 
+            while(i<10) {
+                document.write(i);
+                i += 1;
+            }
+       }
+       numbering(); */
+
+       // 함수의 효용성 
+       /*
+       function numbering() {
+            i = 0; 
+            while(i<10) {
+                document.write(i + "<br />");
+                i += 1;
+            }
+       }
+        numbering(); */
+       // 함수는 여기 저기 필요한 맥락에서 반복적으로 호출하여 사용할 수 있음. 
+       // 재사용성!! -> 동일한 코드가 있을 때 여러 곳에서 사용할 수 있음 
+       // 유지보수의 용이, 가독성을 높일 수 있음! 
+
+       // 함수의 출력
+       // return 
+       function get_member1() {
+            return 'egoing';
+       }
+
+       function get_member2() {
+            return 'k8805';
+       }
+
+       alert(get_member1());
+
+       // 함수의 입력
+       // 
+       function get_argument(arg) {
+            return arg;
+       }
+       // arg : 매개변수를 사용해 인자로 입력값을 받음  
+       // return 에서 입력된 arg값이 출력됨 
+       alert(get_argument(1)); // 여기서 1은 인자
+       alert(get_argument(2));
+
+       function get_arguments(arg1, arg2) {// 매개변수로 여러개를 입력받을 수 있음 
+            return arg1 + arg2; // return 값은 한개만 가질 수 있음 
+       }
+
+       alert(get_arguments(10, 20)); // 결과 30
+       aelrt(get_arguments(20, 30)); // 결과 50
+
+       // 다영한 함수 정의 방법 
+       numbering = function () { // 함수에 대한 정의 부분이 numbering 이라는 변수에 대입된 것임! 
+            i = 0; 
+            while(i < 10) {
+                document.write(i);
+                i += 1;
+            }
+       }
+       numbering();
+
+       /*마치 
+       function numbering() {
+
+       } 와 같음 */
+
+       (function () {
+            i = 0;
+            while(i < 10) {
+                document.write(i);
+                i += 1;
+            }
+       }) (); // 괄호로 묶은 함수를 호출한 (); 임 -> 익명함수 : 일회성일 때 사용함 
+    </script>
+</body>
+</html>

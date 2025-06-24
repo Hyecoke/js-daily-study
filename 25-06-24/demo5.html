@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비교</title>
+</head>
+<body>
+    <script>
+        // 연산자 
+        // 값에 대해서 어떤 작업을 컴퓨터에 지시하기 위한 기호
+        // a = 1; a 는 변수, 1은 상수, = 은 대입연산자
+
+        // 비교연산자 
+        // 주어진 값들이 같은지, 다른지, 큰지, 작은지를 구분하여 결과로 true, false 나타난다.  
+
+        // 동등연산자 ==
+        // 좌항과 우항을 비교해서 서로 값이 같다면 true, 다르면 false
+        alert(1==2); // false
+        alert(2==2); // true
+
+        // 문자도 비교 가능 
+        alert("one" == "one"); // true
+        alert("one" == "two"); // false
+
+        // 일치 연산자 === 좌항과 우항이 정확하게 같은지 비교하는 연산자
+        // 데이터타입까지 같아야만 true 
+        alert(1==="1"); // false 
+        alert(1 =="1"); // true -> 데이터타입이 달라도 같은 의미를 가지면 true / but, 프로그래밍에서 버그를 발생시킬 수 있음 
+        // 즉, === 이 연산자를 활용하여 비교하는 것이 더 유용하고 정확함! 
+
+        // 동등 연산자와 일치 연산자 심화 
+        // undefined : 값이 없다. 
+        // null : 프로그래머가 의도적으로 값이 없음을 부여한 것 
+        
+        // 데이터타입 
+        // Boolean : true, false
+        // Number : 1, 2, 3, ,,,
+        // String : "a","b","c",,,
+
+        alert(undefined == null); // true
+        alert(undefined === null); // false 
+        alert(true == 1); //true : js에선 1을 true로 지정해둠 
+        alert(true === 1); // false
+        alert(ture == '1'); // true
+        alert(true === '1'); // false
+
+        alert(0 === -0); // true
+        alert(NaN === NaN); // false 
+    
+        // ! -> 부정을 의미한다. 
+        // 1 != 2 true
+        alert(1!=2); // true
+        alert(1!=1); // false
+        alert("one" != "two"); //true
+        alert("one" != "one"); // false
+        // !== 정확하게 같지 않다. 
+
+        // > : 좌항이 우항보다 크다면 참, 그렇지 않으면 거짓 
+        alert(10>20); // false
+        alert(10>1); // true
+        alert(10>10); // false
+
+        // >= : 좌항이 우항보다 크거나 같다. 
+        alert(10>=20); // false
+        alert(10>=1); // true
+        alert(10>=10); // true
+    </script>
+</body>
+</html>
