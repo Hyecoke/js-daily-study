@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정규표현식</title>
+</head>
+<body>
+    <h3>정규표현식</h3>
+    <p>
+        문자열에서 특정한 문자를 찾아내는 도구
+    </p>
+
+    <P>
+        네이버 : <a href = "http://naver.com">http://naver.com</a>
+    </P>
+
+    <script>
+       // 정규표현식 리터럴
+       var pattern = /a/; // a가 내가 찾고자 정보를 pattern 이라는 변수에 담은 것임 
+
+       // 정규표현식 객체 생성자 
+       var pattern = new RegExp('a'); 
+
+       // 정규표현식 메소드 실행 
+       // 정규표현식을 컴파일해서 객체를 만들었다면 이제 문자열에서 원하는 문자를 찾아내야 한다. 
+
+       // RegExp.exec(); 
+       // 찾고자 하는 정보를 배열로 리턴하는 함수 
+       var pattern = /a/;
+       pattern.exec("abcde"); // ['a']
+
+       var pattern = /a./; //a와 a다음 1문자 
+       pattern.exec("abcde"); // ['ab'] // . 앞에는 a가 무조건 있어야 함 
+
+       var pattern = /a/;
+       pattern.exec("bcdef"); // null 찾고자 하는 a가 없기 때문에 .. null로 나옴 
+       patter.test("abcde"); // 우리가 찾는 정보의 존재 유무 파악하기 true
+       pattern.test("bcde"); // false, a가 없기 때문에 .. ! 
+
+       // 문자열 메소드 실행 
+       // String.math() 
+       var pattern = /a/;
+       var str = 'abcdef';
+       str.match(pattern); // ["a"];
+       var str = 'bcdef';
+       str.match(pattern); // null
+
+       var str = "abcdef";
+       str.replace(pattern, 'A'); // Abcdef, replace : 뒤에 문자로 바꾸는 것임 
+
+       // 옵션 
+       // i : 대소문자를 구분하지 않는다. 
+       var xi = /a/;
+       "Abcde".match(xi); // null 
+       var oi = /a/i;
+       "Abcde".match(oi); // ["A"]; 
+
+       // g : 검색된 모든 결과 리턴 
+       var xg = /a/;
+       "abcdea".match(xg); // ['a']
+       var og = /a/g;
+       "abcdea".match(og); // ['a', 'a']
+
+       var ig = /a/ig;
+       "AabcdAa".match(ig); // ["A","a", "A", "a"]
+
+       // 캡처 
+       var pattern = /(\w+)\s(\w+)/;
+       // 괄호는 하나의 그룹, \w : 문자(A~Z, a~z, 0~9), 
+       // + : 앞에 있는 문자가 하나 이상인 경우
+       // \s : 공백을 뜻함 
+       var str = "coding everybody"; 
+       var result = str.replace(pattern, "$2, $1"); 
+       // 두번째 그룹이 나오고 ,를 찍고 첫번째 그룹이 나온다. 
+       console.log(result); // everybody, coding
+       // $2 : 두번째 그룹, $1 : 첫번째 그룹
+
+       // 치환 
+       var urlPattern = /\b(?:https?):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*/gim;
+       var content = '생활코딩 : http://opentutorials.org/course/1 입니다. 네이버 : http://naver.com 입니다. ';
+       var result = content.replace(urlPattern, function(url){
+            return '<a href="'+url+'">'+url+'</a>';});
+            console.log(result);
+ 
+
+
+
+
+
+    </script>
+</body>
+</html>
