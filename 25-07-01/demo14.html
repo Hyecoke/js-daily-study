@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수지향 - 유효범위</title>
+</head>
+<body>
+    <h2>전역변수와 지역변수</h2>
+    <script>
+        // 전역변수 
+        var vscope = 'global';
+        function fscope() {
+            // var vscope = 'local';
+            // 지역변수 
+            alert(vscope);
+        }
+        function fscope2() {
+            alert(vscope);
+        }
+        fscope(); 
+        fscope2(); // 둘 다 global 
+        
+        var vscope = 'global'; 
+        function fscope() {
+            vscope = "local";
+        }
+        fscope(); // loocal
+        alert(vscope); // global 
+
+        // 유효범위의 효용성 
+        function a() {
+            var i = 0; // 결과 01234
+            // i = 0; // 결과 무한반복
+        }
+
+        for(var i=0; i<5; i++) {
+            a();
+            document.write(i);
+        }
+
+        // 전역변수를 사용하는 법 
+        MYAPP = {}
+        
+    </script>
+</body>
+</html>
