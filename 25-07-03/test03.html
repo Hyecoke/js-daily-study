@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test03</title>
+</head>
+<body>
+    <!--------------------------------------------------------------------------------------------------------->
+	<fieldset>
+		<legend>문제 7</legend>
+		<h3>숫자를 정렬해서 alert으로 출력해 주세요.</h3>
+		숫자 : <span id="numVal">1,4,2,3,11,32,27,5</span>
+		<button onclick="answer07();">정렬</button>
+        <script>
+            function answer07() {
+                // 1. 숫자 문자열을 배열에 담기 
+                const nText = document.getElementById("numVal").textContent;
+                const nArray = nText.split(',');
+                console.log(nArray); // 배열에 담기 완료! 
+
+                // 2. 배열에 담긴 숫자 정렬하기 
+                //const sortedNums = nArray.sort();
+                // console.log(sortedNums); // ['1', '11','2', '27'..] 이렇게 나옴.. ㅠ,ㅠ 
+
+                // 3. 대소 비교를 해야함! 
+                // - 첫번째 인자가 두번째 인자보다 작으면 음수 반환
+                // - 첫번째 인자가 두번째 인자보다 크면 양수를 반환 
+                // - 첫번째 인자가 두번째 인자와 같으면 0을 반환
+
+                const sortedNums = nArray.sort((a, b) => a - b);
+                console.log(sortedNums); // ['1', '2','3', '4'~~] 완료
+
+
+            }
+        </script>
+	</fieldset>
+	
+	<!--------------------------------------------------------------------------------------------------------->
+	<fieldset>
+		<legend>문제 8</legend>
+		<h3>개강일부터 오늘까지의 날짜를 alert으로 출력해 주세요. (getTime() 메서드 사용)</h3>
+        <!--getTime() : Date 타입의 시간을 밀리초로 환신-->
+		개강일 : <input type="date" id="startDate"/> <button onclick="answer08();">날짜</button>
+
+        <script>
+            function answer08() {
+                /*
+                let startDate = document.getElementById("startDate").value();
+                /* getTime() 날짜로 환산하기 
+                var miMilli = 1000*60 // 1분은 60초
+                var hrMilli = miMilli*60 // 1시간은 60분 
+                var dyMilli = hrMilli*24 // 1일은 24시간  */
+
+                /*
+                let days = startDate.getTime();
+                console.log(days); 
+
+                // test03.html:47 Uncaught TypeError: document.getElementById(...).value is not a function
+
+                // 1. 개강날짜 가져오기 
+                let startDate = document.getElementById("startDate");
+                console.log(startDate.value); // 선택한 개강날짜 값 나옴 
+
+                // 2. 오늘날짜 가져오기 
+                let today = new Date().getTime(); 
+                console.log(today); // 오늘 날짜는 가져옴  */
+
+                /*
+                // 1. 오늘 날짜 가져오기 Date() 객체 생성해서 
+                let today = new Date(); 
+                const timeStamp = today.getTime();
+                console.log(timeStamp);
+
+                // startDate의 값을 Date 객체로 변환하는 과정에서 오류가 나서 값을 못가지고 오고 있음. 
+                // const startDate = new Date(document.getElementById('startDate')); 
+                // console.log(startDate.value); // undefined 
+                // DOM 요소 자체를 Date로 바꾸려는 시도임 
+                // document.getElementById("startDate")는 <input> 요소 그 자체이지, 날짜 문자열이 아님 
+                // 해결방법 : value 를 꺼낸 다음에 new Date() 객체 생성하기
+                
+                // 2. 개강 날짜 가져오기 (문자열)
+                let startDate = document.getElementById("startDate").value; 
+                console.log(startDate); // 값 확인 완료 
+
+                // 3. 개강날짜 Date 객체로 변환하기 
+                let stDate = new Date(startDate); 
+                console.log(stDate);
+                
+                // 4. 시간차이 계산 후 일(day) 단위로 변환 
+                const t = timeStamp - stDate.getTime(); 
+                const days = Math.floor(t  / (1000*60*60*24)); 
+                console.log(days); // 소수점으로 나오므로 소수점 버리기 해야함 
+
+                // 5. 출력
+                alert("개강일로부터 오늘까지 " + days + " 일이 지났습니다."); */
+
+                // 클린코드 
+                // 1. 개강날짜 값 가져오기 
+                let startDateValue = document.getElementById("startDate").value;
+                console.log(startDateValue); 
+
+                // 사용자에게 알림 주기! 
+                if(!startDateValue) {
+                    alert("개강일을 선택해주세요!");
+                    return;
+                }
+
+                // 2. Date 객체로 변환 
+                let startDate = new Date(startDateValue); 
+
+                // 3. 오늘날짜 객체 
+                let today = new Date(); 
+
+                // 4. 시간 차이 계산하기 
+                let diffInMs = today.getTime() - startDate.getTime();
+
+                // 5. 일(day) 단위로 변환 
+                let day = Math.floor(diffInMs / (1000*60*60*24)); 
+
+                // 6. 출력 
+                alert("개강일로부터 오늘까지 " + day + " 일이 지났습니다");
+
+            }
+        </script>
+	</fieldset>
+	
+	<!--------------------------------------------------------------------------------------------------------->
+	<fieldset>
+		<legend>문제 9</legend>
+		<h3>input 태그에 입력된 값으로 table을 생성해 주세요</h3>
+		<form>
+			이름:<input type="text" name="name"/><br/> 
+			나이:<input type="text" name="age"/><br/>
+			성별:<input type="text" name="gender"/><br/>
+		</form>
+			<button onclick="answer09();">생성</button>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>이름</th>
+					<th>나이</th>
+					<th>성별</th>
+				</tr>
+			</thead>
+			<tbody id="createTable">
+			</tbody>
+		</table>
+        <script>
+            function answer09() {
+                // 1. 입력된 이름, 나이, 성별 값 가져오기
+                let name = document.querySelector('input[name="name"]'). value;
+                let age = document.querySelector('input[name="age"]').value;
+                let gender = document.querySelector('input[name="gender"]').value; 
+
+                // 2. 배열에 가져온 값 넣기 
+                let member = {name: name, age: age, gender: gender};
+                console.log(member); // 확인 완료 
+
+                // 3. 동적테이블 생성하여 배열 값 넣기 
+                // 1) 첫번째 오류 - 오류문구는 없으나 테이블이 뜨지 않음. Avoid using document.write();
+                // document.write()는 페이지 로딩이 끝난 후에 실행되면, 전체 페이지를 날려버리고 다시 작성함 
+                
+                /*
+                document.write("<table border='1'><thead>");
+                document.write("<tr><th>이름</th>");
+                document.write("<th>나이</th>");
+                document.write("<th>성별</th></tr></thead>");
+                document.write("<tbody id='createTable'>");
+                
+                // 반복문 돌면서 배열 값 넣기 
+                for(let i = 0; i<member.length; i++) {
+                    document.write("<tr><td>" + member[i].name 
+                                 + "</td><td>"+ member[i].age + "</td><td>" + member[i].gender + "<td>");
+                    document.wirte("</tr>");
+                }
+                document.write("</tbody></table>"); */
+
+                // 1) 오류 해결방법 - DOM 조작 (createElement)을 사용해야 함 
+                // 3. 테이블 생성 
+                // creatElement - 동적인 요소 생성 시 사용
+                // 코드 안정성이 높고, 문자열 없이 조립 가능 
+                // 속성 추가 시, sertAttribut() 메소드 활용하기
+                // textContent, innerText - 내용 넣기
+                let tr = document.createElement("tr"); 
+                let td1 = document.createElement("td");
+                td1.textContent = name; 
+                let td2 = document.createElement("td");
+                td2.textContent = age;
+                let td3 = document.createElement("td");
+                td3.textContent = gender;
+
+                // 4. tr에 td들 추가 
+                // appendChild - 부모 요소의 자식으로 새로운 요소를 추가하는 메소드 
+                // 부모.appendChild(자식);
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+
+                // 5. tbody에 tr 추가 
+                let tbody = document.getElementById("createTable");
+                tbody.appendChild(tr);
+
+                // 6. 입력 초기화 
+                // 값들을 입력하고 생성 버튼을 누르고 나면 입력창에 입력된 값들을 초기화 하는 것임! 
+                // 데이터 중복 막기, 반복입력 용이, ux 개선! 
+                document.querySelector('input[name="name"]').value = "";
+                document.querySelector('input[name="age"]').value = "";
+                document.querySelector('input[name="gender"]').value = "";
+                
+            }
+        </script>
+	</fieldset>
+	
+	<!--------------------------------------------------------------------------------------------------------->
+	<fieldset>
+		<legend>문제 10</legend>
+		<h3>원하는 구구단을 입력하고, alert으로 해당 단을 출력하세요.</h3>
+		<h5>(입력 예: 3 -> 3*1 = 3 3*2 = 6 ...)</h5>
+		<input type="text" id="gugudan" /> <button onclick="answer10();">출력</button>
+        <script>
+            function answer10() {
+                // 1. 입력한 값 가져오기 
+                // 1) 오류 발생 - Uncaught ReferenceError : 함수가 정의되어 있지 않다. 
+                // 아놔 .. ;; 함수 이름 answer01로 적어둠; 
+                let gugudan = document.getElementById("gugudan").value;
+                console.log(gugudan); // 값은 가지고 옴 
+
+                // 2. 가져온 값 숫자로 변환해야함 
+                dan = parseInt(gugudan);
+                let result = ""; 
+
+                // 3. 가져온 숫자의 구구단 for문 돌리기 
+                for(let i=1; i<=9; i++) {
+                    result += dan + "*" + i + "=" + (dan*i) + "\n";
+                }
+                alert(result);
+            }
+
+        </script>
+	</fieldset>
+
+</body>
+</html>

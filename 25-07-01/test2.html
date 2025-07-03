@@ -88,11 +88,36 @@
 		<legend>문제 6</legend>
 		<h3>셀렉트 태그를 사용하여, 원하는 페이지로 이동해 주세요.</h3>
 		<select id="locationSelect" onchange="answer06();">
+            <!--select의 onchange 속성을 사용해서 스크립트 함수 호출-->
 			<option>--선택--</option>
-			<option value="naver">네이버</option>
-			<option value="google">구글</option>
-			<option value="w3schools">w3scools</option>
+			<option value="https://www.naver.com">네이버</option>
+			<option value="https://www.google.com">구글</option>
+			<option value="https://www.w3schools.com">w3scools</option>
 		</select>
+
+        <script>
+            function answer06() {
+                /*
+                // 선택한 값 가져오기 
+                const location = document.querySelector('select[id = "locationSelect"]:checked').value;
+
+                // 선택된 값 찾기 
+                let selected = document.querySelector('select[id="locationSelect"]:checked').value;
+                console.log(selected.value);
+
+                // test2.html:100 Uncaught TypeError: Cannot read properties of null (reading 'value') at answer06 (test2.html:100:97) at HTMLSelectElement.onchange (test2.html:90:54) answer06	@	test2.html:100 onchange	@	test2.html:90 */
+
+                // select값 가져오기 
+                const location = document.getElementById("locationSelect").value;
+                // 디버깅 : console.log(location); // 선택된 값 나옴! 
+                // console.log(location.value) // undefined 그 이유는? 
+
+                // 선택된 값에 해당하는 새 페이지로 열기 
+                window.open(location,"_blanck");
+
+            }
+
+        </script>
 	</fieldset>
 	
 </body>
