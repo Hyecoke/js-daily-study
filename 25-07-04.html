@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 test</title>
+</head>
+<body>
+    <h1>주의사항</h1>
+	<h2>1. jQuery를 사용하지 말 것!</h2>
+
+	<!--------------------------------------------------------------------------------------------------------->
+	
+	<fieldset>
+		<legend>문제 1</legend>
+		<h3>input 태그에 숫자를 입력하고 버튼을 클릭하면, +10이 된 값을 alert으로 출력해 주세요</h3>
+		<h5>(input 값 : 5 -> alert으로 출력된 값 : 15 )</h5>
+		<input type="text" id="q01"/>
+		<button onclick="answer01();">클릭</button>
+        <script>
+            function answer01() {
+                // 1. input에 입력한 값 가져오기
+                let num = document.getElementById('q01').value;
+                console.log(num);
+
+                // 2. num을 숫자로 변환한 후에 alert로 +10된 값 출력하기 
+                let n = parseInt(num);
+                console.log(n);
+                alert(n + 10);  
+            }
+        </script>
+	</fieldset>
+
+	<!--------------------------------------------------------------------------------------------------------->
+	
+	<fieldset>
+		<legend>문제 2</legend>
+		<h3>input 태그에 숫자를 입력하고 버튼을 클릭하였을 때, 해당 값이 존재하는지 여부를 출력해 주세요</h3>
+		<h5>(숫자가 있으면 : 해당 숫자 출력, 숫자가 없으면 "해당 숫자는 존재하지 않습니다." 출력)</h5>
+		<input type="text" id="inputVal"/>
+		<button onclick="answer02();">클릭</button>
+		<pre id="numberArr">1 2 4 7 11 16</pre>
+        <script>
+            function answer02() {
+                // 1. input에 입력한 값 가져오기 
+                let num = document.getElementById("inputVal").value;
+                console.log(num);
+
+                // 2. num이 존재하는지 조건 넣고 여부 출력하기 
+                // 혹시 몰라 숫자로 변환 
+                let n = parseInt(num); 
+
+                // 2-1. 배열에 1, 2, 4, 7, 11, 16 담기 
+                let numberArr = document.getElementById('numberArr').innerText;
+                console.log(numberArr);
+                let nArr = numberArr.split(" ");
+                console.log(nArr); 
+
+                // 2-2. 조건문과 반복문을 통해 여부 출력하기 
+                // 1) 오류 - 해당 숫자가 존재함에도 존재하지 않으므로 출력되고, 반복문 안에 출력구문이 있어 여러번 출력되다가 반복문을 빠져나옴 
+                // 1) 오류 해결방법 - n은 숫자이지만 nArr[i]는 문자열이기 때문에 얘도 숫자로 변환하거나 == 연산자를 사용해야 함, 반복문 안에서 alert()을 하지 않고 존재 여부만 먼저 판단한 후에 한 번만 출력하기 
+                // 존재 여부부터 판별 
+                let found = false; 
+
+                for(var i = 0; i<nArr.length; i++) {
+                    if(n === parseInt(nArr[i])) {
+                       found = true; 
+                       break; // 찾았으면 바로 종료
+                    } 
+                }
+
+                // 2-3. 결과 출력 
+                if(found) {
+                    alert(n + " 는(은) 존재합니다.");
+                } else {
+                    alert("해당 숫자는 존재하지 않습니다.");
+                }
+            }
+        </script>
+	</fieldset>
+	
+	<!--------------------------------------------------------------------------------------------------------->
+	<fieldset>
+		<legend>문제 3</legend>
+		<h3>라디오버튼을 클릭하면 value값을 이용해 해당 사이트로 이동해 주세요.</h3>
+		<h5>(location.href 이용)</h5>
+		<input type="radio" name="rdo" value="naver" onclick="answer03();"/>네이버<br/>
+		<input type="radio" name="rdo" value="google" onclick="answer03();"/>구글<br/>
+		<input type="radio" name="rdo" value="w3schools" onclick="answer03();"/>w3schools<br/>
+        
+        <script>
+            function answer03() {
+                // 1. 클릭한 라디오 값 가져오기 
+                let locationValue = document.querySelector('input[name="rdo"]:checked').value;
+                console.log(locationValue);
+
+                // 2. 사이트 맵핑
+                //https://www.naver.com, https://www.google.com, https://www.w3schools.com
+                let url = ""; 
+
+                if(locationValue === "naver") {
+                    url = "https://www.naver.com";
+                } else if(locationValue === "google") {
+                    url = "https://www.google.com";
+                } else {
+                    url = "https://www.w3schools.com";
+                }
+
+                // 3. 페이지 이동 
+                location.href = url;
+
+            }
+        </script>
+	</fieldset>
+</body>
+</html>
