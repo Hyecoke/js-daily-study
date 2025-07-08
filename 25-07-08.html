@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>25-07-08</title>
+</head>
+<body>
+    <!--------------------------------------------------------------------------------------------------------->
+	
+	<fieldset>
+		<legend>문제 4</legend>
+		<h3>버튼을 클릭하면, 첫번째 체크박스의 항목을 체크해 주세요</h3>
+		<input type="checkbox" name="subject" />Java<br/>
+		<input type="checkbox" name="subject" />DataBase<br/>
+		<input type="checkbox" name="subject" />Web<br/>
+		<button onclick="answer04();">클릭</button>
+        <script>
+            function answer04() {
+                // 1. 체크박스 값들 모두 가져오기 
+                let checkboxes = document.getElementsByName("subject");
+                console.log(checkboxes);
+
+                // 2. 클릭하면 첫번째 체크박스만 체크된 형태로 변환하기 
+                checkboxes[0].checked = true;
+            }
+        </script>
+	</fieldset>
+	
+	<!--------------------------------------------------------------------------------------------------------->
+	
+	<fieldset>
+		<legend>문제 5</legend>
+		<h3>1~45 사이의 랜덤한 숫자를 생성해서 input 태그 안에 입력해 주세요.</h3>
+		랜덤 : <input type="text" readonly="readonly" id="randomVAl" />
+		<button onclick="answer05();">클릭</button>
+        <script>
+            function answer05() {
+                // 1. 1-45 사이의 랜덤 숫자 생성하기
+                let rNum = Math.floor(Math.random()*45) + 1;
+
+                // 2. input 태그 안에 생성된 숫자 넣기 
+                let num = document.getElementById("randomVAl").value;
+                console.log(num);
+                
+
+            }
+        </script>
+	</fieldset>
+	
+	<!--------------------------------------------------------------------------------------------------------->
+	
+	<fieldset>
+		<legend>문제 6</legend>
+		<h3>open 메소드를 사용하여, 선택한 select태그의 해당 패이지를 팝업창으로 실행해 주세요.</h3>
+		<h5>(새창, 새탭도 가능)</h5>
+		<select multiple="multiple" id="selOption">
+			<option value="naver">네이버</option>
+			<option value="google">구글</option>
+			<option value="w3schools">w3schools</option>
+		</select>
+		<button onclick="answer06();">클릭</button>
+	</fieldset>
+
+</body>
+</html>
